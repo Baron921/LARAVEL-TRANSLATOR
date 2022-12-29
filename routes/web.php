@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/lang/{lang}', [\App\Http\Controllers\LanguageController::class, 'change'])->name('langue');
+
+Route::get('/index', [App\Http\Controllers\AccueilController::class, 'index'])->name('index');
