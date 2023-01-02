@@ -10,15 +10,16 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('assets/js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
     <link rel="canonical" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/css/flag-icon.min.css"/>
 </head>
 <body>
     <div id="app">
@@ -39,23 +40,6 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        @php $locale = session()->get('locale'); @endphp
-                            <li class="nav-item dropdown">
-                                <a id="navDrop" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                    @switch($locale)
-                                        @case('en')
-                                            English
-                                        @break
-                                        @default
-                                            Français
-                                    @endswitch
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDrop">
-                                    <a class="dropdown-item" href="/lang/fr">Français</a>
-                                    <a class="dropdown-item" href="/lang/en">English</a>
-                                </div>
-                            </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -89,6 +73,33 @@
                             </li>
                         @endguest
                     </ul>
+                </div>
+                <div id="scrollUp">
+                    @php $locale = session()->get('locale'); @endphp
+                    <li class="nav-item dropdown" style="list-style-type: none;">
+                        <a id="navDrop" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false" style="color: black">
+                            @switch($locale)
+                                @case('en')
+                                <span class="flag-icon flag-icon-squared flag-icon-us"></span> En
+                                @break
+                                @case('fr')
+                                <span class="flag-icon flag-icon-squared flag-icon-fr"></span> Fr
+                                @break
+                                @default
+                                <?php
+                                if ($locale ='en'){ ?>
+                                <span class="flag-icon flag-icon-squared flag-icon-us"></span> En <?php
+                                }else{ ?>
+                                <span class="flag-icon flag-icon-squared flag-icon-us"></span> Fr <?php
+                                } ?>
+                            @endswitch
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDrop">
+                            <a class="dropdown-item" href="/lang/fr"><span class="flag-icon flag-icon-squared flag-icon-fr"></span> Fr</a>
+                            <a class="dropdown-item" href="/lang/en"><span class="flag-icon flag-icon-squared flag-icon-us"></span> En</a>
+                        </div>
+                    </li>
                 </div>
             </div>
         </nav>

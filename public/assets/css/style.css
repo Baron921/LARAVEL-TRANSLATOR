@@ -5,6 +5,10 @@
     right: -100px;
     opacity: 0.5;
 }
+
+#navDrop {
+    background-color: white;
+}
 .dropdown-item {
     background-color: white;
     color: black;

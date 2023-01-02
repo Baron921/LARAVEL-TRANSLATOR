@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\accueil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class AccueilController extends Controller
 {
@@ -12,9 +14,11 @@ class AccueilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('index');
+        $value = $request->session()->get('key');
+        return view('index', compact('value'));
+        //dd(Session::all());
     }
 
     /**
